@@ -1,0 +1,19 @@
+.ui.message {
+    margin: 0;
+}
+
+.ui.message.clickable {
+    cursor: pointer;
+}
+
+.ui.progress.attached {
+    margin-top: -0.2rem;
+}
+
+.ui.progress .bar {
+    min-width: 0;
+}
+
+.ui.icon.visible.message {
+    display: flex !important;
+}

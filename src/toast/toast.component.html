@@ -1,0 +1,20 @@
+<div class="ui message toast {{ toast.classNames }}" (click)="onClicked()">
+    <i class="close icon" *ngIf="toast.hasCloseIcon" (click)="removeToast()"></i>
+    <ng-container #contentContainer></ng-container>
+</div>
+<div class="ui bottom attached progress active {{ toast.progressBarClassNames }}" *ngIf="toast.timeout > 0">
+    <div class="bar" [style.width.%]="toast.progress"></div>
+</div>
+
+<ng-template #defaultContentTemplate>
+    <i class="{{ toast.icon }} icon" *ngIf="toast.hasIcon"></i>
+    <div class="content">
+        <div class="header">{{ toast.header }}</div>
+        <p *ngIf="!multipleMessages">{{ toast.message }}</p>
+        <ng-container *ngIf="multipleMessages">
+            <ul class="list" *ngFor="let msg of toast.message">
+                <li>{{ msg }}</li>
+            </ul>
+        </ng-container>
+    </div>
+</ng-template>
