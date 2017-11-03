@@ -23,8 +23,48 @@ import { Subscription } from "rxjs/Subscription";
 
 @Component({
     selector: "sui-toast",
-    templateUrl: "./toast.component.html",
-    styleUrls: ["./toast.component.css"]
+    template: `
+<div class="ui message toast {{ toast.classNames }}" (click)="onClicked()">
+    <i class="close icon" *ngIf="toast.hasCloseIcon" (click)="removeToast()"></i>
+    <ng-container #contentContainer></ng-container>
+</div>
+<div class="ui bottom attached progress active {{ toast.progressBarClassNames }}" *ngIf="toast.timeout > 0">
+    <div class="bar" [style.width.%]="toast.progress"></div>
+</div>
+
+<ng-template #defaultContentTemplate>
+    <i class="{{ toast.icon }} icon" *ngIf="toast.hasIcon"></i>
+    <div class="content">
+        <div class="header">{{ toast.header }}</div>
+        <p *ngIf="!multipleMessages">{{ toast.message }}</p>
+        <ng-container *ngIf="multipleMessages">
+            <ul class="list" *ngFor="let msg of toast.message">
+                <li>{{ msg }}</li>
+            </ul>
+        </ng-container>
+    </div>
+</ng-template>`,
+    styles: [`
+.ui.message {
+    margin: 0;
+}
+    
+.ui.message.clickable {
+    cursor: pointer;
+}
+    
+.ui.progress.attached {
+    margin-top: -0.2rem;
+}
+    
+.ui.progress .bar {
+    min-width: 0;
+}
+    
+.ui.icon.visible.message {
+    display: flex !important;
+}
+`]
 })
 export class SuiToastComponent extends SuiTransition implements OnInit, OnDestroy {
 
