@@ -64,6 +64,7 @@ export class SuiToastService {
         appComponentNode.appendChild(toastComponentNode);
         // register change detection
         this._appRef.attachView(toastContainer.hostView);
+        toastContainer.changeDetectorRef.detectChanges();
     }
 
     public addToast(toast: SuiToast): void {
