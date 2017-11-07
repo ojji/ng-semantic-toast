@@ -1,7 +1,7 @@
 export type SuiToastPosition = "top left" | "top right" | "top center" | "top full width" |
 "bottom left" | "bottom right" | "bottom center" | "bottom full width";
 
-export const SuiToastPosition: any = {
+export const SuiToastPosition = {
     TopLeft: "top left" as SuiToastPosition,
     TopRight: "top right" as SuiToastPosition,
     TopCenter: "top center" as SuiToastPosition,
