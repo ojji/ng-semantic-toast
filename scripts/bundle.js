@@ -33,16 +33,7 @@ function configure(plugins = []) {
             "rxjs/Observable",
             "rxjs/add/operator/share",
             "ng2-semantic-ui"
-        ],
-        globals: {
-            "@angular/common": "ng.common",
-            "@angular/core": "ng.core",
-            "rxjs/Subscription": "Rx",
-            "rxjs/Subject": "Rx",
-            "rxjs/Observable": "Rx",
-            "rxjs/add/operator/share": "Rx.Observable.prototype",
-            "ng2-semantic-ui": "ng2.semantic.ui"
-        }
+        ]
     }
 }
 
@@ -51,9 +42,18 @@ rollup
     .rollup(configure())
     .then(bundle => {
         bundle.write({
-            moduleName: "ng-semantic-toast",
-            dest: "bundles/ng-semantic-toast.umd.js",
+            name: "ng-semantic-toast",
+            file: "bundles/ng-semantic-toast.umd.js",
             format: "umd",
+            globals: {
+                "@angular/common": "ng.common",
+                "@angular/core": "ng.core",
+                "rxjs/Subscription": "Rx",
+                "rxjs/Subject": "Rx",
+                "rxjs/Observable": "Rx",
+                "rxjs/add/operator/share": "Rx.Observable.prototype",
+                "ng2-semantic-ui": "ng2.semantic.ui"
+            }
         })
     })
 
@@ -65,8 +65,17 @@ rollup
     .then(bundle => {
         //rollupAnalyzer.formatted(bundle).then(console.log).catch(console.error)
         bundle.write({
-            moduleName: "ng-semantic-toast",
-            dest: "bundles/ng-semantic-toast.umd.min.js",
-            format: "umd"
+            name: "ng-semantic-toast",
+            file: "bundles/ng-semantic-toast.umd.min.js",
+            format: "umd",
+            globals: {
+                "@angular/common": "ng.common",
+                "@angular/core": "ng.core",
+                "rxjs/Subscription": "Rx",
+                "rxjs/Subject": "Rx",
+                "rxjs/Observable": "Rx",
+                "rxjs/add/operator/share": "Rx.Observable.prototype",
+                "ng2-semantic-ui": "ng2.semantic.ui"
+            }
         })
     })
