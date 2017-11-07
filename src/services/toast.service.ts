@@ -59,6 +59,7 @@ export class SuiToastService {
             appComponentNode.appendChild(toastComponentNode);
             // set position and add to the containers array
             toastContainer.instance.position = toast.position;
+            toastContainer.changeDetectorRef.detectChanges();
             this._toastContainers.push(toastContainer);
         }
 
