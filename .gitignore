@@ -4,6 +4,9 @@
 /dist
 /tmp
 
+# package lock file
+package-lock.json
+
 ## ngc logs
 *.ngfactory.ts
 *.ngsummary.json
