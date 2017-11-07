@@ -14,6 +14,7 @@ import { SuiToastPosition } from "../classes/toast-position";
 @Injectable()
 export class SuiToastService {
 
+    private _rootComponent: ComponentRef<any>;
     private _rootViewContainerRef: ViewContainerRef;
     private _toastContainers: ComponentRef<SuiToastContainerComponent>[] = [];
 
@@ -23,6 +24,16 @@ export class SuiToastService {
 
     public setRootViewContainerRef(rootViewContainerRef: ViewContainerRef): void {
         this._rootViewContainerRef = rootViewContainerRef;
+    }
+
+    public registerRootComponent(root: ComponentRef<any>) {
+        // this method is called by the APP_BOOTSTRAP_INITIALIZER
+        // since this is the time when we can be sure that the root component has been initialized
+        // now is the right time to add the toast components to the view
+        this._rootComponent = root;
+        this._toastContainers.forEach(tc => {
+            this.insertContainer(root, tc);
+        });
     }
 
     private createToastContainerComponent(): ComponentRef<SuiToastContainerComponent> {
@@ -46,20 +57,24 @@ export class SuiToastService {
         return index === -1 ? false : this._toastContainers[index];
     }
 
+    private insertContainer(root: ComponentRef<any>, toastContainer: ComponentRef<SuiToastContainerComponent>): void {
+        // append container next to the root component
+        const toastComponentNode = this.getComponentRootNode(toastContainer);
+        const appComponentNode = this.getComponentRootNode(root);
+        appComponentNode.appendChild(toastComponentNode);
+        // register change detection
+        this._appRef.attachView(toastContainer.hostView);
+    }
+
     public addToast(toast: SuiToast): void {
         let toastContainer: ComponentRef<SuiToastContainerComponent> | false = this.getToastContainerWithPosition(toast.position);
         if (!toastContainer) {
-            // create the component
+            // create the component and push to the containers collection
             toastContainer = this.createToastContainerComponent();
-            // register change detection
-            this._appRef.attachView(toastContainer.hostView);
-            // append to the root view element
-            const toastComponentNode: any = this.getComponentRootNode(toastContainer);
-            const appComponentNode: any = this.getComponentRootNode(this._appRef.components[0]);
-            appComponentNode.appendChild(toastComponentNode);
-            // set position and add to the containers array
             toastContainer.instance.position = toast.position;
-            toastContainer.changeDetectorRef.detectChanges();
+            if (this._rootComponent) {
+                this.insertContainer(this._rootComponent, toastContainer);
+            }
             this._toastContainers.push(toastContainer);
         }
 
