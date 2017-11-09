@@ -19,6 +19,10 @@
     "build": "npm run lint && npm run compile && npm run package:lib",
     "prepare": "npm run build"
   },
+  "engines": {
+    "node": "8.9.x",
+    "npm": "5.5.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ojji/ng-semantic-toast.git"
