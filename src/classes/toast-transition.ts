@@ -9,3 +9,24 @@ export class SuiToastTransition {
                 public transitionOutDuration: number = transitionInDuration) {
     }
 }
+
+export const SuiToastTransitionTypes = {
+    Fade: 'fade',
+    FadeUp: 'fade up',
+    FadeDown: 'fade down',
+    FadeLeft: 'fade left',
+    FadeRight: 'fade right',
+    HorizontalFlip: 'horizontal flip',
+    VerticalFlip: 'vertical flip',
+    Drop: 'drop',
+    FlyLeft: 'fly left',
+    FlyRight: 'fly right',
+    FlyUp: 'fly up',
+    FlyDown: 'fly down',
+    Browse: 'browse',
+    BrowseRight: 'browse right',
+    SlideLeft: 'slide left',
+    SlideRight: 'slide right',
+    SlideUp: 'slide up',
+    SlideDown: 'slide down'
+}

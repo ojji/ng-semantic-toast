@@ -1,0 +1,51 @@
+<div class="ui header">
+    <i class="ticket icon"></i>
+    <div class="content">
+        <h2>Your items in cart ({{ tickets.length }} tickets - {{ ticketsTotal | currency:'GBP':true }})</h2>
+    </div>
+</div>
+<ul class="ui divided items">
+    <div class="item" *ngFor="let ticket of tickets">
+        <div class="image">
+                <img class="poster" [src]="ticket.poster">
+            </div>
+            <div class="content">
+                <a class="header">{{ ticket.title }}</a>
+                <div class="right floated header">{{ ticket.cost | currency:'GBP':true }}</div>
+                <div class="meta">
+                    <span class="cinema">{{ ticket.theater }}</span>
+                    <div class="ui label">{{ ticket.sessionTime | date:'y.MM.dd. HH:mm' }}</div>
+                    <div class="ui label">{{ ticket.auditorium }}</div>
+                </div>
+                <div class="description">
+                    <p>{{ ticket.description }}</p>
+                </div>
+                <div class="extra">
+                    <div class="ui right floated button" (click)="removeTicket(ticket)">
+                        <i class="trash outline icon"></i>
+                        Remove                        
+                    </div>
+                    <div class="ui green label" *ngIf="ticket.hasLabel('Limited')">Limited</div>
+                    <div class="ui blue label" *ngIf="ticket.hasLabel('Premier')">Premier</div>
+                    <div class="ui red label" *ngIf="ticket.hasLabel('18+')">18+</div>
+                </div>
+        </div>
+    </div>
+</ul>
+
+<ng-template #undoTicketTemplate let-context let-toast="toast">
+    <div class="ui middle aligned grid">
+        <div class="twelve wide column">
+            <h3 class="header">
+                <i class="ticket icon"></i>
+                Ticket removed - {{ context.itemRemoved.title }} - {{ context.itemRemoved.sessionTime | date:'y.MM.dd. HH:mm' }}
+            </h3>
+        </div>
+        <div class="four wide right aligned column">
+            <div class="ui icon inverted olive tiny button" (click)="context.undo(context.cart, context.itemRemoved); toast.close()">
+                <i class="undo icon"></i>
+                Undo
+            </div>
+        </div>
+    </div>
+</ng-template>

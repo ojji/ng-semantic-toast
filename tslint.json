@@ -7,7 +7,7 @@
       "banana-in-box": true,
       "templates-no-negated-async": true,
       "directive-selector": [true, "attribute", "sui", "camelCase"],
-      "component-selector": [true, "element", "sui", "kebab-case"],
+      "component-selector": [true, "element", ["sui", "demo"], "kebab-case"],
       "use-input-property-decorator": true,
       "use-output-property-decorator": true,
       "use-host-property-decorator": true,

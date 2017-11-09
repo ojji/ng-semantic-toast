@@ -1,0 +1,8 @@
+.poster {
+    max-height: 200px;
+    width: auto !important;
+}
+
+.ui.items>.item>.image:not(.ui) {
+    width: auto !important;
+}
