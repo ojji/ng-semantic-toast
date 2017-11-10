@@ -6,7 +6,7 @@
   "module": "dist/public.js",
   "types": "dist/public.d.ts",
   "scripts": {
-    "start": "node server.js",
+    "start": "node ./scripts/server.js",
     "lint:demo": "tslint -c tslint.json --project tsconfig.demo.json",
     "lint:lib": "tslint -c tslint.json --project src/tsconfig.json",
     "lint": "npm run lint:lib && npm run lint:demo",
@@ -17,7 +17,7 @@
     "build:lib": "npm run lint:lib && npm run compile:lib && npm run package:lib",
     "build:demo": "npm run lint && npm run compile",
     "build": "npm run lint && npm run compile && npm run package:lib",
-    "heroku-postbuild": "ng build --aot -prod",
+    "heroku-postbuild": "npm run build:demo",
     "prepare": "npm run build"
   },
   "engines": {
