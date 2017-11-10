@@ -5,6 +5,7 @@ import {
   SuiToastType,
   SuiToastPosition,
   SuiToastTransition,
+  SuiToastTransitionTypes,
   IToastOptions 
 } from 'ng-semantic-toast';
 
@@ -23,7 +24,9 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
     const options: IToastOptions = {
-      transition: new SuiToastTransition('swing up', 700, 'swing up', 700),
+      transition: new SuiToastTransition(
+        SuiToastTransitionTypes.SwingUp, 700,
+        SuiToastTransitionTypes.SwingUp, 700),
       hasCloseIcon: false,
       clickCallback: (t: SuiMessageToast) => {
         t.close();

@@ -7,7 +7,8 @@ import {
     SuiCustomTemplateToast,
     SuiMessageToast,
     IToastOptions,
-    SuiToastTransition
+    SuiToastTransition,
+    SuiToastTransitionTypes
 } from 'ng-semantic-toast';
 
 export interface IUndoTicketContext {
@@ -77,8 +78,10 @@ export class TemplateToastComponent implements OnInit {
             const options: IToastOptions = {
                 timeout: 5000,
                 hasCloseIcon: false,
-                clickCallback: (t: SuiMessageToast) => { t.close(); },
-                transition: new SuiToastTransition('fly left', 225, 'fly left', 195)
+                clickCallback: (t: SuiMessageToast) => { t.close(); },     
+                transition: new SuiToastTransition(
+                    SuiToastTransitionTypes.FlyLeft, 225,
+                    SuiToastTransitionTypes.FlyLeft, 195)
             };
 
             const messageToast = new SuiMessageToast(
@@ -103,7 +106,9 @@ export class TemplateToastComponent implements OnInit {
                 classNames: 'undo',
                 hasCloseIcon: false,
                 clickCallback: (t: SuiCustomTemplateToast<IUndoTicketContext>) => { t.close(); },
-                transition: new SuiToastTransition('fly left', 225, 'fly left', 195)
+                transition: new SuiToastTransition(
+                    SuiToastTransitionTypes.FlyLeft, 225,
+                    SuiToastTransitionTypes.FlyLeft, 195)
             };
 
             const toast = new SuiCustomTemplateToast<IUndoTicketContext>(

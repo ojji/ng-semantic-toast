@@ -7,5 +7,6 @@ export {
     SuiCustomTemplateToast,    
     IToastOptions,
     SuiToastPosition,
-    SuiToastTransition
+    SuiToastTransition,
+    SuiToastTransitionTypes
  } from "./index";
