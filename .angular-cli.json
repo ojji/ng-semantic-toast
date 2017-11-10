@@ -44,9 +44,7 @@
     "interface": {
       "prefix": "false"
     },
-    "class": {      
-      "inlineStyle": false,
-      "inlineTemplate": false,
+    "class": {
       "spec": false
     },
     "component": {
@@ -55,23 +53,15 @@
       "spec": true
     },
     "directive": {      
-      "inlineStyle": false,
-      "inlineTemplate": false,
       "spec": true
     },
     "module": {      
-      "inlineStyle": false,
-      "inlineTemplate": false,
       "spec": false
     },
     "pipe": {      
-      "inlineStyle": false,
-      "inlineTemplate": false,
       "spec": true
     },
     "service": {      
-      "inlineStyle": false,
-      "inlineTemplate": false,
       "spec": true
     }
   }
