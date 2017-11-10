@@ -1,6 +1,6 @@
 {
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "version": "1.0.0",
     "name": "ng-semantic-toast"
   },
   "apps": [
@@ -18,7 +18,6 @@
       "tsconfig": "../../tsconfig.demo.json",
       "testTsconfig": "../../src/tsconfig.spec.json",
       "prefix": "demo",
-      "mobile": false,
       "styles": [
         "styles.css"
       ],
@@ -30,8 +29,6 @@
       }
     }
   ],
-  "addons": [],
-  "packages": [],
   "e2e": {
     "protractor": {
       "config": "./protractor.conf.js"
@@ -44,18 +41,38 @@
   },
   "defaults": {
     "styleExt": "css",
-    "prefixInterfaces": false,
-    "inline": {
-      "style": false,
-      "template": false
+    "interface": {
+      "prefix": "false"
     },
-    "spec": {
-      "class": false,
-      "component": true,
-      "directive": true,
-      "module": false,
-      "pipe": true,
-      "service": true
+    "class": {      
+      "inlineStyle": false,
+      "inlineTemplate": false,
+      "spec": false
+    },
+    "component": {
+      "inlineStyle": false,
+      "inlineTemplate": false,
+      "spec": true
+    },
+    "directive": {      
+      "inlineStyle": false,
+      "inlineTemplate": false,
+      "spec": true
+    },
+    "module": {      
+      "inlineStyle": false,
+      "inlineTemplate": false,
+      "spec": false
+    },
+    "pipe": {      
+      "inlineStyle": false,
+      "inlineTemplate": false,
+      "spec": true
+    },
+    "service": {      
+      "inlineStyle": false,
+      "inlineTemplate": false,
+      "spec": true
     }
   }
 }
