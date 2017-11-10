@@ -1,5 +1,6 @@
 import { SuiToastPosition } from "./toast-position";
-import { IToastOptions } from "./toast-options";
+import { IToastOptions } from "../interfaces/toast-options";
+import { SuiToastOptions } from "./toast-options";
 import { SuiToastTransition } from "./toast-transition";
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
@@ -18,13 +19,18 @@ export abstract class SuiToast {
     private _insertOnTop: boolean;
     private _transition: SuiToastTransition;
 
-    constructor(toastOptions: IToastOptions) {
-        this._timeout = toastOptions.timeout;
-        this._hasCloseIcon = toastOptions.hasCloseIcon;
-        this._clickCallback = toastOptions.clickCallback;
-        this._position = toastOptions.position;
-        this._insertOnTop = toastOptions.insertOnTop;
-        this._transition = toastOptions.transition;
+    constructor(toastOptions?: IToastOptions) {
+        this.setupOptions(toastOptions);
+    }
+
+    private setupOptions(options?: IToastOptions): void {
+        let opts = { ...SuiToastOptions.Default(), ...options };
+        this._timeout = opts.timeout;
+        this._hasCloseIcon = opts.hasCloseIcon;
+        this._clickCallback = opts.clickCallback;
+        this._position = opts.position;
+        this._insertOnTop = opts.insertOnTop;
+        this._transition = opts.transition;
     }
 
     public abstract get classNames(): string;

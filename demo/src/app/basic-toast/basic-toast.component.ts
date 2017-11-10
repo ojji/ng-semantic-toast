@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { SuiToastService, SuiMessageToast, SuiToastType, SuiToastPosition, SuiDefaultToastOptions } from 'ng-semantic-toast';
+import {
+    SuiToastService,
+    SuiMessageToast,
+    SuiToastType,
+    SuiToastPosition,
+    IToastOptions
+} from 'ng-semantic-toast';
 
 @Component({
     selector: 'demo-basic-toast',
@@ -101,7 +107,7 @@ export class BasicToastComponent implements OnInit {
             this._toastsToCreate[this._nextIndex].message,
             this._toastsToCreate[this._nextIndex].type,
             this._toastsToCreate[this._nextIndex].icon,
-            {...SuiDefaultToastOptions, ...toastOptions}
+            toastOptions
         );
 
         this._toastService.addToast(toast);

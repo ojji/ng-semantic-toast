@@ -1,5 +1,12 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { SuiToastService, SuiMessageToast, SuiToastType, SuiToastPosition, SuiToastTransition, IToastOptions } from 'ng-semantic-toast';
+import { 
+  SuiToastService,
+  SuiMessageToast,
+  SuiToastType,
+  SuiToastPosition,
+  SuiToastTransition,
+  IToastOptions 
+} from 'ng-semantic-toast';
 
 @Component({
   selector: 'demo-root',
@@ -7,7 +14,8 @@ import { SuiToastService, SuiMessageToast, SuiToastType, SuiToastPosition, SuiTo
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Toast demo app';
+  public title = 'Toast demo app';
+
   constructor(private _toastService: SuiToastService,
               private _viewContainerRef: ViewContainerRef) {
     this._toastService.setRootViewContainerRef(this._viewContainerRef);
@@ -20,11 +28,7 @@ export class AppComponent implements OnInit {
       clickCallback: (t: SuiMessageToast) => {
         t.close();
       },
-      insertOnTop: false,
-      position: SuiToastPosition.BottomCenter,
-      timeout: 0,
-      classNames: '',
-      progressBarClassNames: ''
+      position: SuiToastPosition.BottomCenter
     };
 
     const toast = new SuiMessageToast('This was a triumph!',

@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { SuiToastService, SuiMessageToast, SuiToastType, SuiToastPosition,
-  SuiToastTransition, IToastOptions, SuiDefaultToastOptions } from 'ng-semantic-toast';
+import { 
+  SuiToastService,
+  SuiMessageToast,
+  SuiToastType,
+  SuiToastPosition,
+  SuiToastTransition,
+  IToastOptions
+} from 'ng-semantic-toast';
 
 @Component({
   selector: 'demo-home',
@@ -18,11 +24,8 @@ export class HomeComponent implements OnInit {
       clickCallback: (t: SuiMessageToast) => {
         t.close();
       },
-      insertOnTop: false,
       position: SuiToastPosition.BottomCenter,
-      timeout: 10000,
-      classNames: '',
-      progressBarClassNames: ''
+      timeout: 10000
     };
 
     const toast = new SuiMessageToast(

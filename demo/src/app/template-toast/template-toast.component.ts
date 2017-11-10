@@ -1,10 +1,4 @@
-import {
-    Component,
-    OnInit,
-    ViewChild,
-    TemplateRef,
-    ViewContainerRef
-} from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, ViewContainerRef } from '@angular/core';
 import { Ticket } from './ticket';
 import {
     SuiToastService,
@@ -13,7 +7,6 @@ import {
     SuiCustomTemplateToast,
     SuiMessageToast,
     IToastOptions,
-    SuiDefaultToastOptions,
     SuiToastTransition
 } from 'ng-semantic-toast';
 
@@ -81,12 +74,10 @@ export class TemplateToastComponent implements OnInit {
 
     public removeTicket(ticket: Ticket) {
         if (this.tickets.indexOf(ticket) === 1) {
-            const options = {
+            const options: IToastOptions = {
                 timeout: 5000,
                 hasCloseIcon: false,
                 clickCallback: (t: SuiMessageToast) => { t.close(); },
-                position: SuiToastPosition.BottomFullWidth,
-                insertOnTop: false,
                 transition: new SuiToastTransition('fly left', 225, 'fly left', 195)
             };
 
@@ -95,7 +86,7 @@ export class TemplateToastComponent implements OnInit {
                 'Our ticketing system is overwhelmed. Please, try again later.',
                 SuiToastType.Error(),
                 'frown',
-                { ...SuiDefaultToastOptions, ...options }
+                options
             );
             this._toastService.addToast(messageToast);
         } else {
@@ -110,19 +101,15 @@ export class TemplateToastComponent implements OnInit {
 
             const options: IToastOptions = {
                 classNames: 'undo',
-                progressBarClassNames: '',
-                timeout: 0,
                 hasCloseIcon: false,
                 clickCallback: (t: SuiCustomTemplateToast<IUndoTicketContext>) => { t.close(); },
-                position: SuiToastPosition.BottomFullWidth,
-                insertOnTop: false,
                 transition: new SuiToastTransition('fly left', 225, 'fly left', 195)
             };
 
             const toast = new SuiCustomTemplateToast<IUndoTicketContext>(
                 this.undoTicketTemplate,
                 undoTicketContext,
-                { ...SuiDefaultToastOptions, ...options }
+                options
             );
 
             this._toastService.addToast(toast);

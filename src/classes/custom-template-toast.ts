@@ -1,6 +1,6 @@
 import { TemplateRef } from "@angular/core";
 import { SuiToast } from "./toast";
-import { IToastOptions } from "./toast-options";
+import { IToastOptions } from "../interfaces/toast-options";
 
 export class SuiCustomTemplateToast<T> extends SuiToast {
     private _classNames: string;
@@ -16,10 +16,9 @@ export class SuiCustomTemplateToast<T> extends SuiToast {
 
     constructor(public template: TemplateRef<T>,
         public context: T,
-        toastOptions: IToastOptions
-        ) {
-            super(toastOptions);
-            this._classNames = toastOptions.classNames;
-            this._progressBarClassNames = toastOptions.progressBarClassNames;
-        }
+        toastOptions?: IToastOptions) {
+        super(toastOptions);
+        this._classNames = (toastOptions && toastOptions.classNames) ? toastOptions.classNames : ``;
+        this._progressBarClassNames = (toastOptions && toastOptions.progressBarClassNames) ? toastOptions.progressBarClassNames : ``;
+    }
 }

@@ -1,5 +1,5 @@
 import { SuiToast } from "./toast";
-import { IToastOptions } from "./toast-options";
+import { IToastOptions } from "../interfaces/toast-options";
 
 export class SuiToastType {
     public static Success(): SuiToastType {
@@ -45,8 +45,7 @@ export class SuiMessageToast extends SuiToast {
         public message: string | string[],
         public type: SuiToastType,
         public icon: string = ``,
-        toastOptions: IToastOptions
-    ) {
+        toastOptions?: IToastOptions) {
         super(toastOptions);
     }
 }
