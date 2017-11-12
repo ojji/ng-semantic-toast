@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+.ui.toast.spooky.message {
+    background: url('http://www.pngall.com/wp-content/uploads/2016/10/Halloween-PNG-Images.png') no-repeat center center; 
+    background-color: rgb(91, 75, 121);
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
+    color: rgb(255, 200, 80);
+}
+
+.ui.spooky.progress .bar {
+    background: rgb(255, 200, 80);
+}
+
+.ui.undo.toast {
+    padding: 14px 24px;
+    background-color: #323232;
+    color: white;
+}
+
+.ui.undo.toast .column {
+    padding: 0;
+}

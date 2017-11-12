@@ -1,1 +1,118 @@
-<div class="ui button" (click)="createToast()">Create toast</div>
+<div class="ui segments">
+    <div class="ui segment">
+        <div class="ui form">
+            <div class="ui three column grid">
+                <div class="column">
+                    <div class="grouped fields">
+                        <label>Header</label>
+                        <input type="text" [(ngModel)]="header">
+                    </div>
+                    <div class="grouped fields">
+                        <label>Message body - you can create a list with multiple rows</label>
+                        <textarea rows="4" [(ngModel)]="message"></textarea>
+                    </div>
+                    <div class="grouped fields"><label>Icon <span><a href="https://semantic-ui.com/elements/icon.html" target="_blank">(see: built-in icons)</a></span></label>
+                        <input type="text" [(ngModel)]="icon">
+                    </div>
+                    <div class="grouped fields">
+                        <label>Show duration (ms) - 0 means the message won't time out</label>
+                        <div class="field">
+                            <input type="number" [(ngModel)]="timeout" min="0">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <sui-checkbox [(ngModel)]="insertOnTop">New toast should be on top</sui-checkbox>
+                    </div>
+                    <div class="field">
+                        <sui-checkbox [(ngModel)]="hasCloseIcon">Should have a close icon</sui-checkbox>
+                    </div>
+                    <div class="field">
+                        <sui-checkbox [(ngModel)]="hasOnClickCallback">Should have custom behavior on click</sui-checkbox>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="grouped fields">
+                        <label>Toast position</label>
+                        <div class="ui two column grid">
+                            <div class="column">
+                                <div class="field">
+                                    <sui-radio-button [(ngModel)]="position" value="top left">Top left</sui-radio-button>
+                                </div>
+                                <div class="field">
+                                    <sui-radio-button [(ngModel)]="position" value="top right">Top right</sui-radio-button>
+                                </div>
+                                <div class="field">
+                                    <sui-radio-button [(ngModel)]="position" value="top center">Top center</sui-radio-button>
+                                </div>
+                                <div class="field">
+                                    <sui-radio-button [(ngModel)]="position" value="top full width">Top full width</sui-radio-button>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="field">
+                                    <sui-radio-button [(ngModel)]="position" value="bottom left">Bottom left</sui-radio-button>
+                                </div>
+                                <div class="field">
+                                    <sui-radio-button [(ngModel)]="position" value="bottom right">Bottom right</sui-radio-button>
+                                </div>
+                                <div class="field">
+                                    <sui-radio-button [(ngModel)]="position" value="bottom center">Bottom center</sui-radio-button>
+                                </div>
+                                <div class="field">
+                                    <sui-radio-button [(ngModel)]="position" value="bottom full width">Bottom full width</sui-radio-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grouped fields">
+                        <label>Toast type</label>
+                        <div class="field">
+                            <sui-radio-button [(ngModel)]="toastType" value="success">Success</sui-radio-button>
+                        </div>
+                        <div class="field">
+                            <sui-radio-button [(ngModel)]="toastType" value="info">Info</sui-radio-button>
+                        </div>
+                        <div class="field">
+                            <sui-radio-button [(ngModel)]="toastType" value="warning">Warning</sui-radio-button>
+                        </div>
+                        <div class="field">
+                            <sui-radio-button [(ngModel)]="toastType" value="error">Error</sui-radio-button>
+                        </div>
+                        <div class="field">
+                            <sui-radio-button [(ngModel)]="toastType" value="custom">Custom</sui-radio-button>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="grouped fields">
+                        <label>Transition in <span><a href="https://semantic-ui.com/modules/transition.html" target="_blank">(see: built-in transitions)</a></span></label>
+                        <div class="field">
+                            <sui-select class="selection" placeholder="Select an animation" [(ngModel)]="transitionIn">
+                                <sui-select-option *ngFor="let o of transitionOptions" [value]="o"></sui-select-option>
+                            </sui-select>
+                        </div>
+                    </div>
+                    <div class="grouped fields">
+                        <label>Transition in duration (ms)</label>
+                        <input type="number" [(ngModel)]="transitionInDuration" min="0">
+                    </div>
+                    <div class="grouped fields">
+                        <label>Transition out <span><a href="https://semantic-ui.com/modules/transition.html" target="_blank">(see: built-in transitions)</a></span></label>
+                        <div class="field">
+                            <sui-select class="selection" placeholder="Select an animation" [(ngModel)]="transitionOut">
+                                <sui-select-option *ngFor="let o of transitionOptions" [value]="o"></sui-select-option>
+                            </sui-select>
+                        </div>
+                    </div>
+                    <div class="grouped fields">
+                        <label>Transition out duration (ms)</label>
+                        <input type="number" [(ngModel)]="transitionOutDuration" min="0">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui bottom attached segment">
+        <div class="ui button" (click)="createToast()">Create toast</div>
+    </div>
+</div>

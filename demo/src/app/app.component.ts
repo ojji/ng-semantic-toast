@@ -34,10 +34,10 @@ export class AppComponent implements OnInit {
       position: SuiToastPosition.BottomCenter
     };
 
-    const toast = new SuiMessageToast('This was a triumph!',
-            'I\'m making a note here: Huge success. It\'s hard to overstate my satisfaction.',
-            SuiToastType.Success(),
-            'child',
+    const toast = new SuiMessageToast('Page load notification',
+            'This message appears on page load.',
+            SuiToastType.Info(),
+            'info',
             options);
     this._toastService.addToast(toast);
   }

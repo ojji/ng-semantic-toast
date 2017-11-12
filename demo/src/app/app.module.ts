@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SuiCheckboxModule, SuiSelectModule } from 'ng2-semantic-ui';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { SuiToastModule, SuiToastService } from 'ng-semantic-toast';
@@ -26,7 +28,10 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    SuiToastModule
+    FormsModule,
+    SuiToastModule,
+    SuiCheckboxModule,
+    SuiSelectModule
   ],
   providers: [SuiToastService],
   bootstrap: [AppComponent]
