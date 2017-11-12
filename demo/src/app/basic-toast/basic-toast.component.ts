@@ -37,7 +37,7 @@ export class BasicToastComponent implements OnInit {
     public transitionOutDuration: number = 300;
     public transitionIn: string = 'fade';
     public transitionOut: string = 'fade';
-    public transitionOptions = Object.keys(SuiToastTransitionTypes).map(k => {SuiToastTransitionTypes[k]});
+    public transitionOptions = Object.keys(SuiToastTransitionTypes).map(k => {return SuiToastTransitionTypes[k]});
     
     constructor(private _toastService: SuiToastService) { }
 
