@@ -1,8 +1,8 @@
 import {
     Injectable,
+    Injector,
     ApplicationRef,
     ComponentFactoryResolver,
-    ViewContainerRef,
     ReflectiveInjector,
     ComponentRef,
     EmbeddedViewRef
@@ -15,15 +15,11 @@ import { SuiToastPosition } from "../classes/toast-position";
 export class SuiToastService {
 
     private _rootComponent: ComponentRef<any>;
-    private _rootViewContainerRef: ViewContainerRef;
     private _toastContainers: ComponentRef<SuiToastContainerComponent>[] = [];
 
     constructor(private _appRef: ApplicationRef,
-                private _factoryResolver: ComponentFactoryResolver) {
-    }
-
-    public setRootViewContainerRef(rootViewContainerRef: ViewContainerRef): void {
-        this._rootViewContainerRef = rootViewContainerRef;
+                private _factoryResolver: ComponentFactoryResolver,
+                private _injector: Injector) {
     }
 
     public registerRootComponent(root: ComponentRef<any>) {
@@ -37,13 +33,10 @@ export class SuiToastService {
     }
 
     private createToastContainerComponent(): ComponentRef<SuiToastContainerComponent> {
-        if (!this._rootViewContainerRef) {
-            throw Error("You have to set the root view container first.");
-        }
         const toastComponentFactory: any = this._factoryResolver.resolveComponentFactory(SuiToastContainerComponent);
 
         const providers: any = ReflectiveInjector.resolve([]);
-        const injector: any = ReflectiveInjector.fromResolvedProviders(providers, this._rootViewContainerRef.parentInjector);
+        const injector: any = ReflectiveInjector.fromResolvedProviders(providers, this._injector);
 
         return toastComponentFactory.create(injector);
     }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { 
   SuiToastService,
   SuiMessageToast,
@@ -17,9 +17,7 @@ import {
 export class AppComponent implements OnInit {
   public title = 'Toast demo app';
 
-  constructor(private _toastService: SuiToastService,
-              private _viewContainerRef: ViewContainerRef) {
-    this._toastService.setRootViewContainerRef(this._viewContainerRef);
+  constructor(private _toastService: SuiToastService) {
   }
 
   public ngOnInit(): void {
