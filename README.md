@@ -52,6 +52,6 @@ To add a new toast, you have to call the toast service's ``addToast(toast: SuiTo
 There are 2 types of toasts supported at the moment - both extending the ```SuiToast``` abstract class:
 
 * ```SuiMessageToast``` - these are simple toasts based on the Semantic UI message component, capable to display simple notifications to the user
-* ```SuiCustomTemplateToast\<T>``` - these are customisable toasts which need custom templates supplied and a data context to operate on, allowing to create more complex notifications to display to the user
+* ```SuiCustomTemplateToast<T>``` - these are customisable toasts which need custom templates supplied and a data context to operate on, allowing to create more complex notifications to display to the user
 
 Both classes are customizable with properties in the ```IToastOptions``` interface.
