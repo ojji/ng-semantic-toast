@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, TemplateRef, ViewContainerRef } from '@angular/core';
 import { Ticket } from './ticket';
 import {
     SuiToastService,
     SuiToastType,
     SuiToastPosition,
+    SuiToast,
     SuiCustomTemplateToast,
     SuiMessageToast,
     IToastOptions,
@@ -22,7 +23,7 @@ export interface IUndoTicketContext {
     templateUrl: './template-toast.component.html',
     styleUrls: ['./template-toast.component.css']
 })
-export class TemplateToastComponent implements OnInit {
+export class TemplateToastComponent implements OnInit, OnDestroy {
     $bladerunner = `Thirty years after the events of the first film, a new blade runner, LAPD Officer K (Ryan Gosling),
     unearths a long-buried secret that has the potential to plunge what's left of society into chaos. K's discovery
     leads him on a quest to find Rick Deckard (Harrison Ford), a former LAPD blade runner who has been missing for 30 years.`;
@@ -54,6 +55,8 @@ export class TemplateToastComponent implements OnInit {
             this.$jigsaw, ['Premier', '18+'], false),
     ];
 
+    private _toasts: SuiToast[] = [];
+
     public get tickets(): Ticket[] {
         return this._tickets.filter(t => t.deleted === false);
     }
@@ -70,7 +73,14 @@ export class TemplateToastComponent implements OnInit {
 
     constructor(private _toastService: SuiToastService) { }
 
-    ngOnInit() {
+    public ngOnInit(): void {
+    }
+
+    public ngOnDestroy(): void {
+        this._toasts.forEach(t => {
+            t.close();
+        });
+        this._toasts.length = 0;
     }
 
     public removeTicket(ticket: Ticket) {
@@ -92,6 +102,7 @@ export class TemplateToastComponent implements OnInit {
                 options
             );
             this._toastService.addToast(messageToast);
+            this._toasts.push(messageToast);
         } else {
             ticket.deleted = true;
             const undoTicketContext: IUndoTicketContext = {
@@ -118,6 +129,7 @@ export class TemplateToastComponent implements OnInit {
             );
 
             this._toastService.addToast(toast);
+                this._toasts.push(toast);
         }
     }
 
